@@ -12,34 +12,41 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Map;
 import java.util.Properties;
 
 @Configuration
-@ConditionalOnProperty(prefix = KaptchaConst.AUTO_CONFIG_PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties(KaptchaProperties.class)
 public class KaptchaAutoConfigure {
 
     @Bean
-    public Producer defaultKaptcha(KaptchaProperties kaptchaProperties) {
+    public Producer defaultKaptcha(Properties kaptchaProps) {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();
-        Config config = new Config(kaptchaPropertiesToProperties(kaptchaProperties));
+        Config config = new Config(kaptchaProps);
         defaultKaptcha.setConfig(config);
         return defaultKaptcha;
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = KaptchaConst.AUTO_CONFIG_PREFIX, value = "session.enabled", havingValue = "true")
-    public ServletRegistrationBean<KaptchaServlet> kaptchaServlet(KaptchaProperties kaptchaProperties) {
-        return new ServletRegistrationBean<>(new KaptchaServlet(), kaptchaProperties.getServlet().getPath());
+    @ConditionalOnProperty(prefix = KaptchaConst.AUTO_CONFIG_PREFIX, value = "servlet.enabled", havingValue = "true")
+    public ServletRegistrationBean kaptchaServlet(KaptchaProperties kaptchaProperties, Properties kaptchaProps) {
+        ServletRegistrationBean<KaptchaServlet> sr = new ServletRegistrationBean<>(new KaptchaServlet(), kaptchaProperties.getServlet().getPath());
+        for (Map.Entry<Object, Object> en : kaptchaProps.entrySet()) {
+            sr.addInitParameter(String.valueOf(en.getKey()), String.valueOf(en.getValue()));
+        }
+        return sr;
     }
 
-    private Properties kaptchaPropertiesToProperties(KaptchaProperties kaptchaProperties) {
+
+    @Bean(name = "kaptchaProps")
+    protected Properties kaptchaPropertiesToProperties(KaptchaProperties kaptchaProperties) {
         Properties properties = new Properties();
 
         properties.setProperty(Constants.KAPTCHA_SESSION_CONFIG_KEY, kaptchaProperties.getSession().getKey());
         properties.setProperty(Constants.KAPTCHA_SESSION_CONFIG_DATE, kaptchaProperties.getSession().getDate());
 
-        properties.setProperty(Constants.KAPTCHA_BORDER, String.valueOf(kaptchaProperties.getBorder().getEnabled()));
+        Boolean border = kaptchaProperties.getBorder().getEnabled();
+        properties.setProperty(Constants.KAPTCHA_BORDER, (border == null || Boolean.FALSE.equals(border) ? "no" : "yes"));
         properties.setProperty(Constants.KAPTCHA_BORDER_COLOR, kaptchaProperties.getBorder().getColor());
         properties.setProperty(Constants.KAPTCHA_BORDER_THICKNESS, String.valueOf(kaptchaProperties.getBorder().getThickness()));
 

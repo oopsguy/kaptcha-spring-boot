@@ -8,8 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 )
 public class KaptchaProperties {
 
-    private Boolean enabled = false;
-
     private Session session = new Session();
 
     private Servlet servlet = new Servlet();
@@ -153,7 +151,7 @@ public class KaptchaProperties {
     }
 
     public static class TextProducer {
-        private String impl;
+        private String impl = "com.google.code.kaptcha.text.impl.DefaultTextCreator";
 
         private Char character = new Char();
 
@@ -312,14 +310,6 @@ public class KaptchaProperties {
         public void setHeight(Integer height) {
             this.height = height;
         }
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
     }
 
     public Session getSession() {
