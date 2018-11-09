@@ -12,6 +12,11 @@ import org.springframework.context.annotation.DependsOn;
 
 import java.util.Properties;
 
+/**
+ * Spring Boot Auto Configuration for kaptcha
+ *
+ * @author Oopsguy
+ */
 @Configuration
 @EnableConfigurationProperties(KaptchaProperties.class)
 public class KaptchaAutoConfigure {
@@ -20,7 +25,7 @@ public class KaptchaAutoConfigure {
     protected Properties kaptchaProps(KaptchaProperties kaptchaProperties) {
         return ConfigUtils.kaptchaPropertiesToProperties(kaptchaProperties);
     }
-    
+
     @Bean
     @DependsOn({"kaptchaProps"})
     public Producer defaultKaptcha(Properties kaptchaProps) {

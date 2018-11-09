@@ -6,6 +6,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * ConfigurationProperties for kaptcha
+ *
+ * @author Oopsguy
+ */
 @ConfigurationProperties(
         prefix = KaptchaConst.AUTO_CONFIG_PREFIX
 )
@@ -22,7 +27,6 @@ public class KaptchaProperties extends BaseProperties {
     }
 
     public static class SingleKaptchaProperties extends BaseProperties {
-
         private Session session = new Session();
 
         private String servlet;

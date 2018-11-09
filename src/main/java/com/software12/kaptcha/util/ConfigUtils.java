@@ -5,6 +5,11 @@ import com.software12.kaptcha.autoconfigure.BaseProperties;
 
 import java.util.Properties;
 
+/**
+ * Utilities for config file
+ *
+ * @author Oopsguy
+ */
 public class ConfigUtils {
 
     private static String nullToString(Object value) {

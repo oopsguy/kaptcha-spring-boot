@@ -1,5 +1,10 @@
 package com.software12.kaptcha.autoconfigure;
 
+/**
+ * Kaptcha base properties
+ *
+ * @author Oopsguy
+ */
 public abstract class BaseProperties {
 
     private Border border = new Border();

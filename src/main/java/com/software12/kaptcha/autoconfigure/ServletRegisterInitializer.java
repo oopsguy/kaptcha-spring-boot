@@ -12,6 +12,11 @@ import javax.servlet.ServletRegistration;
 import java.util.Map;
 import java.util.Properties;
 
+/**
+ * Register kaptcha servlets configured in properties
+ *
+ * @author Oopsguy
+ */
 public class ServletRegisterInitializer implements ServletContextInitializer {
 
     private final static String KAPTCHA_SERVLET_BEAN_NAME_SUBFFIX = "KapthcaServlet";
@@ -25,9 +30,11 @@ public class ServletRegisterInitializer implements ServletContextInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         Map<String, KaptchaProperties.SingleKaptchaProperties> servlets = kaptchaProperties.getServlets();
+
         if (servlets == null || servlets.isEmpty()) {
             return;
         }
+
         servlets.forEach((name, props) -> {
             if (StringUtils.isEmpty(props.getServlet())) {
                 return;
@@ -37,13 +44,16 @@ public class ServletRegisterInitializer implements ServletContextInitializer {
             serviceServlet.addMapping(props.getServlet());
             serviceServlet.setAsyncSupported(true);
             Properties subProps = ConfigUtils.kaptchaPropertiesToProperties(props);
+
             for (Map.Entry<Object, Object> en : kaptchaProps.entrySet()) {
-                if (subProps.containsKey(en.getKey()) && !StringUtils.isEmpty(String.valueOf(subProps.get(en.getKey())))
-                        || StringUtils.isEmpty(en.getValue())) {
+                boolean isSkip = subProps.containsKey(en.getKey()) && !StringUtils.isEmpty(String.valueOf(subProps.get(en.getKey())))
+                        || StringUtils.isEmpty(en.getValue());
+                if (isSkip) {
                     continue;
                 }
                 subProps.setProperty(String.valueOf(en.getKey()), String.valueOf(en.getValue()));
             }
+
             for (Map.Entry<Object, Object> en : subProps.entrySet()) {
                 serviceServlet.setInitParameter(String.valueOf(en.getKey()), String.valueOf(en.getValue()));
             }

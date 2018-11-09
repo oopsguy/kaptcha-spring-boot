@@ -9,7 +9,7 @@
     <packaging>jar</packaging>
 
     <name>kaptcha-spring-boot-starter</name>
-    <url>https://github.com/12software</url>
+    <url>https://github.com/12software/kaptcha-spring-boot-starter</url>
     <description>Kaptcha Spring Boot Starter</description>
 
     <parent>
@@ -39,6 +39,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
