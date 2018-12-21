@@ -4,9 +4,9 @@ Kaptcha Spring Boot Starter
 
 ## 使用方式
 
-由于本库还没有发布 jar 包到中央仓库，请使用 `mvn install` 安装到本地。 
+由于本项目还没有发布 jar 到中央仓库，请使用 `mvn install` 安装到本地。 
 
-在 `pom.xml` 文件中加入 kaptcha-spring-boot-starter 依赖声明
+在 `poim.xml` 文件中引入 kaptcha-spring-boot-starter
 
 ```xml
 <dependency>
