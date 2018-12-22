@@ -1,6 +1,6 @@
 # Kaptcha Spring Boot Starter
 
-Kaptcha Spring Boot Starter will help you use Kaptcha with Spring Boot.
+Kaptcha Spring Boot Starter will help you use Google Kaptcha with Spring Boot.
 
 ## Usage
 
@@ -10,7 +10,7 @@ Declare `kaptcha-spring-boot-starter` dependency in your `pom.xml` file.
 <dependency>
     <groupId>com.oopsguy.kaptcha</groupId>
     <artifactId>kaptcha-spring-boot-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-beta</version>
 </dependency>
 ```
 
@@ -52,7 +52,7 @@ kaptcha:
   image:
     width: 200
     height: 60
-  # You can configure multiple separate captchas 
+  # You can configure multiple separate captcha
   # and configure properties for each, the configuration will 
   # override the parent configuration
   items:
@@ -72,6 +72,10 @@ kaptcha:
 ## Example
 
 ### YAML Example
+
+The following yaml configure some common kaptcha properties 
+and define two kaptcha servlets(`home` and `admin`),
+you can configure them in your `application.yml`:
 
 ```yaml
 server:
@@ -136,7 +140,13 @@ class SystemController {
 }
 ```
 
-## LICENSE
+For more examples, please see [kaptcha-spring-boot-starter-example](https://github.com/12software/kaptcha-spring-boot/tree/master/kaptcha-spring-boot-starter-example)
+
+## Notice
+
+If you custom your own `Producer` bean, it will instead of default. But the separate configuration is still apply.
+
+## License
 
 MIT License
 
