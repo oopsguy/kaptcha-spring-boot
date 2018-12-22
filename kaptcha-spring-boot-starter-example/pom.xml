@@ -8,15 +8,19 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath>../kaptcha-spring-boot-parent</relativePath>
     </parent>
+    <artifactId>kaptcha-spring-boot-starter-example</artifactId>
     <packaging>jar</packaging>
-    <artifactId>kaptcha-spring-boot-starter</artifactId>
-    <name>kaptcha-spring-boot-starter</name>
-    <description>Kaptcha Spring Boot Starter</description>
+    <name>kaptcha-spring-boot-starter-example</name>
+    <description>Example project for Kaptcha Spring Boot Starter</description>
 
     <dependencies>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.oopsguy.kaptcha</groupId>
-            <artifactId>kapcha-spring-boot-autoconfigure</artifactId>
+            <artifactId>kaptcha-spring-boot-starter</artifactId>
             <version>${project.version}</version>
         </dependency>
 

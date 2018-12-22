@@ -16,7 +16,6 @@
 
     <modules>
         <module>kaptcha-spring-boot-parent</module>
-        <module>kaptcha</module>
     </modules>
 
     <name>kaptcha-spring-boot</name>

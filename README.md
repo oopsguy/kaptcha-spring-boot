@@ -4,13 +4,13 @@ Kaptcha Spring Boot Starter
 
 ## 使用方式
 
-由于本项目还没有发布 jar 到中央仓库，请使用 `mvn install` 安装到本地。 
+由于本项目还没有发布 jar 包到中央仓库，请使用 `mvn install` 安装到本地。 
 
-在 `poim.xml` 文件中引入 kaptcha-spring-boot-starter
+在 `pom.xml` 文件中引入 `kaptcha-spring-boot-starter` 依赖：
 
 ```xml
 <dependency>
-    <groupId>com.software12</groupId>
+    <groupId>com.oopsguy.kaptcha</groupId>
     <artifactId>kaptcha-spring-boot-starter</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 </dependency>
@@ -30,11 +30,11 @@ kaptcha:
     image:
       height: 60
       width: 160
-  # 配置验证码 servlet 并设置独立配置，配置将覆盖以上的公共配置
-  servlets:
+  # 配置独立验证码并设置单独配置，配置将覆盖以上的公共配置
+  items:
     # OA 端验证码配置
     oa:
-      sevlet: /oa/capthca
+      path: /oa/capthca
       text-producer:
         font:
           size: 16
@@ -42,7 +42,7 @@ kaptcha:
         height: 40
     # 管理端验证码配置
     admin:
-      servlet: /admin/capthca
+      path: /admin/capthca
       text-producer:
         character:
           length: 4

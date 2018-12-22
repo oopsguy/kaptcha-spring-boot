@@ -6,6 +6,7 @@
         <groupId>com.oopsguy.kaptcha</groupId>
         <artifactId>kaptcha-spring-boot-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <relativePath>../kaptcha-spring-boot-parent</relativePath>
     </parent>
     <packaging>jar</packaging>
     <artifactId>kapcha-spring-boot-autoconfigure</artifactId>
@@ -30,12 +31,6 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
