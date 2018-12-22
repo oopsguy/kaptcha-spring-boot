@@ -4,6 +4,7 @@ import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import com.oopsguy.kaptcha.autoconfigure.util.ConfigUtils;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.context.annotation.Bean;
@@ -27,6 +28,7 @@ public class KaptchaAutoConfigure {
     }
 
     @Bean
+    @ConditionalOnMissingBean(Producer.class)
     @DependsOn({"kaptchaProps"})
     public Producer defaultKaptcha(Properties kaptchaProps) {
         DefaultKaptcha defaultKaptcha = new DefaultKaptcha();

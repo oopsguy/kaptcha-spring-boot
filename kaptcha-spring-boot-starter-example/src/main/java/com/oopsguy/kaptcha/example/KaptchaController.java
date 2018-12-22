@@ -1,0 +1,53 @@
+package com.oopsguy.kaptcha.example;
+
+import com.google.code.kaptcha.Producer;
+import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+
+@Controller
+public class KaptchaController {
+
+    private final static String HOME_CAPTCHA_SESSION_KEY = "homeCaptcha";
+
+    @Resource
+    private Producer captchaProducer;
+
+    @GetMapping("/captcha")
+    public void getKaptchaImage(HttpServletResponse response) throws Exception {
+        response.setContentType("image/jpeg");
+        String capText = captchaProducer.createText();
+        BufferedImage bi = captchaProducer.createImage(capText);
+        ServletOutputStream out = response.getOutputStream();
+        ImageIO.write(bi, "jpg", out);
+        try {
+            out.flush();
+        } finally {
+            out.close();
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/check")
+    public String checkHomeCaptcha(HttpServletRequest req) {
+        String captcha = req.getParameter("captcha");
+        if (StringUtils.isEmpty(captcha)) {
+            return "empty captcha";
+        }
+        String savedCaptcha = (String) req.getSession().getAttribute(HOME_CAPTCHA_SESSION_KEY);
+        if (captcha.equalsIgnoreCase(savedCaptcha)) {
+            return "valid!";
+        }
+        return "invalid";
+    }
+
+}

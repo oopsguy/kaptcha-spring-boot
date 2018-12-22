@@ -14,13 +14,13 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <name>kaptcha-spring-boot</name>
+    <url>https://github.com/12software/kaptcha-spring-boot</url>
+    <description>Kaptcha Spring Boot Starter</description>
+
     <modules>
         <module>kaptcha-spring-boot-parent</module>
     </modules>
-
-    <name>kaptcha-spring-boot</name>
-    <url>https://github.com/12software/kaptcha-spring-boot-starter</url>
-    <description>Kaptcha Spring Boot Starter</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

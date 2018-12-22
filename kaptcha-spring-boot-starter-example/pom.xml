@@ -11,6 +11,7 @@
     <artifactId>kaptcha-spring-boot-starter-example</artifactId>
     <packaging>jar</packaging>
     <name>kaptcha-spring-boot-starter-example</name>
+    <url>https://github.com/12software/kaptcha-spring-boot</url>
     <description>Example project for Kaptcha Spring Boot Starter</description>
 
     <dependencies>

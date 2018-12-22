@@ -1,1 +1,1 @@
-provides: kaptcha-spring-boot-parent
+provides: kapcha-spring-boot-autoconfigure

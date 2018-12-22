@@ -1,12 +1,10 @@
-# Kaptcha Spring Boot Starter
+## Kaptcha Spring Boot Starter
 
-Kaptcha Spring Boot Starter
+Kaptcha Spring Boot Starter will help you use Kaptcha with Spring Boot.
 
-## 使用方式
+### Usage
 
-由于本项目还没有发布 jar 包到中央仓库，请使用 `mvn install` 安装到本地。 
-
-在 `pom.xml` 文件中引入 `kaptcha-spring-boot-starter` 依赖：
+Declare `kaptcha-spring-boot-starter` dependency in your `pom.xml` file.
 
 ```xml
 <dependency>
@@ -16,9 +14,64 @@ Kaptcha Spring Boot Starter
 </dependency>
 ```
 
-## 示例配置
+### Properties
 
-### YAML 配置方式
+You can use some properties to custom your captcha without Java code as following:
+
+```yaml
+# for kaptcha
+kaptcha:
+  border:
+    enabled: true
+    color: '200,200,200'
+    thickness: 1
+  noise:
+    color: '239,166,131'
+    # you can specify your own implementation class
+    impl:
+  obscurificator:
+    impl:
+  producer:
+    impl:
+  background:
+    impl:
+    color-from: '255,0,0'
+    color-to: '255,0,0'
+  text-producer:
+    impl:
+    character:
+      string: '01234567890ABCDEF'
+      length: 4
+      space: 10
+    font:
+      names:
+      color: '255,255,255'
+      size: 46
+  word:
+    impl:
+  image:
+    width: 200
+    height: 60
+  # You can configure multiple separate captchas 
+  # and configure properties for each, the configuration will 
+  # override the parent configuration
+  items:
+    home:
+      path: /home/captcha
+      session:
+        key: homeCaptcha
+      background:
+        color-from: '255,255,255'
+        color-to: '255,255,255'
+      text-producer:
+        font:
+          color: '68,155,44'
+    # more items ...
+```
+
+### Example
+
+#### YAML Example
 
 ```yaml
 server:
@@ -30,17 +83,16 @@ kaptcha:
     image:
       height: 60
       width: 160
-  # 配置独立验证码并设置单独配置，配置将覆盖以上的公共配置
   items:
-    # OA 端验证码配置
-    oa:
-      path: /oa/capthca
+    # home captcha
+    home:
+      path: /home/capthca
       text-producer:
         font:
           size: 16
       image:
         height: 40
-    # 管理端验证码配置
+    # admin captcha
     admin:
       path: /admin/capthca
       text-producer:
@@ -48,9 +100,11 @@ kaptcha:
           length: 4
 ```
 
-访问 [http://localhost:8080/oa/capthca](http://localhost:8080/oa/capthca) 和 [http://localhost:8080/admin/capthca](http://localhost:8080/admin/capthca)
+Then browse [http://localhost:8080/oa/capthca](http://localhost:8080/oa/capthca) and [http://localhost:8080/admin/capthca](http://localhost:8080/admin/capthca)
 
-### 代码方式
+#### Code Example
+
+You can also inject `Producer` Bean directly by annotation to generate captcha.
 
 ```java
 @Controller
@@ -68,7 +122,7 @@ class SystemController {
         response.setHeader("Pragma", "no-cache");
         response.setContentType("image/jpeg");
         String capText = captchaProducer.createText();
-        // 将验证码存到 session
+        // Save the captcha code to the session
         ShiroKit.setSessionAttr(AdminConst.SESSION_KEY_CAPTCHA_LOGIN, capText);
         BufferedImage bi = captchaProducer.createImage(capText);
         ServletOutputStream out = response.getOutputStream();

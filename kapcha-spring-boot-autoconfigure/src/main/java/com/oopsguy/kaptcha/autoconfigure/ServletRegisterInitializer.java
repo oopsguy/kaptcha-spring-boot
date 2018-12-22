@@ -29,21 +29,24 @@ public class ServletRegisterInitializer implements ServletContextInitializer {
 
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        Map<String, KaptchaProperties.SingleKaptchaProperties> servlets = kaptchaProperties.getItems();
+        Map<String, KaptchaProperties.SingleKaptchaProperties> items = kaptchaProperties.getItems();
 
-        if (servlets == null || servlets.isEmpty()) {
+        if (items == null || items.isEmpty()) {
             return;
         }
 
-        servlets.forEach((name, props) -> {
+        KaptchaProperties.SingleKaptchaProperties props;
+
+        for (Map.Entry<String, KaptchaProperties.SingleKaptchaProperties> entry : items.entrySet()) {
+            props = entry.getValue();
             if (StringUtils.isEmpty(props.getPath())) {
                 return;
             }
 
-            ServletRegistration.Dynamic serviceServlet = servletContext.addServlet(name + KAPTCHA_SERVLET_BEAN_NAME_SUBFFIX, new KaptchaServlet());
+            ServletRegistration.Dynamic serviceServlet = servletContext.addServlet(entry.getKey() + KAPTCHA_SERVLET_BEAN_NAME_SUBFFIX, new KaptchaServlet());
             serviceServlet.addMapping(props.getPath());
             serviceServlet.setAsyncSupported(true);
-            Properties subProps = ConfigUtils.kaptchaPropertiesToProperties(props);
+            Properties subProps = ConfigUtils.kaptchaSubPropertiesToProperties(entry.getKey(), props);
 
             for (Map.Entry<Object, Object> en : kaptchaProps.entrySet()) {
                 boolean isSkip = subProps.containsKey(en.getKey()) && !StringUtils.isEmpty(String.valueOf(subProps.get(en.getKey())))
@@ -57,7 +60,7 @@ public class ServletRegisterInitializer implements ServletContextInitializer {
             for (Map.Entry<Object, Object> en : subProps.entrySet()) {
                 serviceServlet.setInitParameter(String.valueOf(en.getKey()), String.valueOf(en.getValue()));
             }
-        });
+        }
     }
 
 }

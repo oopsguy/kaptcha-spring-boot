@@ -1,0 +1,60 @@
+server:
+  port: 8081
+  tomcat:
+    accept-count: 100
+
+spring:
+  resources:
+    static-locations: classpath:templates/
+  mvc:
+    static-path-pattern: /**
+
+
+# for kaptcha
+kaptcha:
+  border:
+    enabled: true
+    color: '200,200,200'
+    thickness: 1
+  noise:
+    color: '239,166,131'
+    impl:
+  obscurificator:
+    impl:
+  producer:
+    impl:
+  background:
+    impl:
+    color-from: '255,0,0'
+    color-to: '255,0,0'
+  text-producer:
+    impl:
+    character:
+      string: '01234567890ABCDEF'
+      length: 4
+      space: 10
+    font:
+      names:
+      color: '255,255,255'
+      size: 46
+  word:
+    impl:
+  image:
+    width: 200
+    height: 60
+  items:
+    home:
+      path: /home/captcha
+      session:
+        key: homeCaptcha
+      background:
+        color-from: '255,255,255'
+        color-to: '255,255,255'
+      text-producer:
+        font:
+          color: '68,155,44'
+
+logging:
+  level:
+    root: debug
+

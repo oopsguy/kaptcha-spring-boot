@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kaptcha Example</title>
+</head>
+<body>
+
+<h1>Home Captcha</h1>
+
+<form action="check" method="post">
+    <label for="captcha">
+        captcha:
+        <input id="captcha" type="text" name="captcha" placeholder="input captcha">
+    </label>
+    <br>
+    <img src="/home/captcha" style="cursor: pointer" title="click to refresh" alt="captcha" onclick="changeImg(this)">
+    <br>
+    <input type="submit" value="submit">
+</form>
+
+<script type="text/javascript">
+
+    function changeImg(obj) {
+        obj.src = '/home/captcha?t=' + Math.random();
+    }
+
+</script>
+
+</body>
+</html>

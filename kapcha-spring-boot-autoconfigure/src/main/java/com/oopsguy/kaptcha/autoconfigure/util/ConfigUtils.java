@@ -2,6 +2,7 @@ package com.oopsguy.kaptcha.autoconfigure.util;
 
 import com.google.code.kaptcha.Constants;
 import com.oopsguy.kaptcha.autoconfigure.BaseProperties;
+import com.oopsguy.kaptcha.autoconfigure.KaptchaProperties;
 
 import java.util.Properties;
 
@@ -11,13 +12,6 @@ import java.util.Properties;
  * @author Oopsguy
  */
 public class ConfigUtils {
-
-    private static String nullToString(Object value) {
-        if (value != null) {
-            return String.valueOf(value);
-        }
-        return "";
-    }
 
     public static Properties kaptchaPropertiesToProperties(BaseProperties kaptchaProperties) {
         Properties properties = new Properties();
@@ -52,6 +46,27 @@ public class ConfigUtils {
         properties.setProperty(Constants.KAPTCHA_IMAGE_HEIGHT, nullToString(kaptchaProperties.getImage().getHeight()));
 
         return properties;
+    }
+
+    public static Properties kaptchaSubPropertiesToProperties(String name, KaptchaProperties.SingleKaptchaProperties properties) {
+        Properties props = kaptchaPropertiesToProperties(properties);
+        props.setProperty(Constants.KAPTCHA_SESSION_CONFIG_KEY, emptyToDefault(properties.getSession().getKey(), name + "_" + Constants.KAPTCHA_SESSION_KEY));
+        props.setProperty(Constants.KAPTCHA_SESSION_CONFIG_DATE, emptyToDefault(properties.getSession().getDate(), name + "_" + Constants.KAPTCHA_SESSION_DATE));
+        return props;
+    }
+
+    private static String nullToString(Object value) {
+        if (value != null) {
+            return String.valueOf(value);
+        }
+        return "";
+    }
+
+    private static String emptyToDefault(String val, String defaultVal) {
+        if (val == null || "".equals(val)) {
+            return defaultVal;
+        }
+        return val;
     }
 
 }

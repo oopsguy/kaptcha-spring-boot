@@ -22,7 +22,7 @@ public class KaptchaProperties extends BaseProperties {
         return items;
     }
 
-    public void setServlets(Map<String, SingleKaptchaProperties> items) {
+    public void setItems(Map<String, SingleKaptchaProperties> items) {
         this.items = items;
     }
 
