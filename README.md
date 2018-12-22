@@ -69,9 +69,9 @@ kaptcha:
     # more items ...
 ```
 
-## Example
+## Examples
 
-### YAML Example
+### YAML
 
 The following yaml configure some common kaptcha properties 
 and define two kaptcha servlets(`home` and `admin`),
@@ -106,7 +106,7 @@ kaptcha:
 
 Then browse [http://localhost:8080/home/capthca](http://localhost:8080/home/capthca) and [http://localhost:8080/admin/capthca](http://localhost:8080/admin/capthca)
 
-### Code Example
+### Java Code
 
 You can also inject `Producer` Bean directly by annotation to generate captcha.
 
