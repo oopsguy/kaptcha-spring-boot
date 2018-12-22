@@ -1,8 +1,8 @@
-## Kaptcha Spring Boot Starter
+# Kaptcha Spring Boot Starter
 
 Kaptcha Spring Boot Starter will help you use Kaptcha with Spring Boot.
 
-### Usage
+## Usage
 
 Declare `kaptcha-spring-boot-starter` dependency in your `pom.xml` file.
 
@@ -14,7 +14,7 @@ Declare `kaptcha-spring-boot-starter` dependency in your `pom.xml` file.
 </dependency>
 ```
 
-### Properties
+## Properties
 
 You can use some properties to custom your captcha without Java code as following:
 
@@ -69,9 +69,9 @@ kaptcha:
     # more items ...
 ```
 
-### Example
+## Example
 
-#### YAML Example
+### YAML Example
 
 ```yaml
 server:
@@ -100,9 +100,9 @@ kaptcha:
           length: 4
 ```
 
-Then browse [http://localhost:8080/oa/capthca](http://localhost:8080/oa/capthca) and [http://localhost:8080/admin/capthca](http://localhost:8080/admin/capthca)
+Then browse [http://localhost:8080/home/capthca](http://localhost:8080/home/capthca) and [http://localhost:8080/admin/capthca](http://localhost:8080/admin/capthca)
 
-#### Code Example
+### Code Example
 
 You can also inject `Producer` Bean directly by annotation to generate captcha.
 
