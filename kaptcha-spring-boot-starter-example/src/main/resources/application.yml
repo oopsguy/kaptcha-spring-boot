@@ -47,6 +47,7 @@ kaptcha:
       path: /home/captcha
       session:
         key: homeCaptcha
+        date: homeCaptchaDate
       background:
         color-from: '255,255,255'
         color-to: '255,255,255'

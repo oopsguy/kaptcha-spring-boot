@@ -1,6 +1,6 @@
 # Kaptcha Spring Boot Starter
 
-Kaptcha Spring Boot Starter will help you use Google Kaptcha with Spring Boot.
+Kaptcha Spring Boot Starter can help you use [Google Kaptcha](http://code.google.com/p/kaptcha/) with [Spring Boot](https://github.com/spring-projects/spring-boot) easier.
 
 ## Usage
 
@@ -10,7 +10,7 @@ Declare `kaptcha-spring-boot-starter` dependency in your `pom.xml` file.
 <dependency>
     <groupId>com.oopsguy.kaptcha</groupId>
     <artifactId>kaptcha-spring-boot-starter</artifactId>
-    <version>1.0.0-beta</version>
+    <version>1.0.0-beta-2</version>
 </dependency>
 ```
 
@@ -108,7 +108,7 @@ Then browse [http://localhost:8080/home/capthca](http://localhost:8080/home/capt
 
 ### Java Code
 
-You can also inject `Producer` Bean directly by annotation to generate captcha.
+You can also inject a `Producer` bean directly by annotation to generate captcha.
 
 ```java
 @Controller

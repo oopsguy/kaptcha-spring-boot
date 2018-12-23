@@ -13,11 +13,19 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.util.Date;
 
 @Controller
 public class KaptchaController {
 
     private final static String HOME_CAPTCHA_SESSION_KEY = "homeCaptcha";
+
+    private final static String HOME_CAPTCHA_SESSION_DATE = "homeCaptchaDate";
+
+    /**
+     * captcha expire time, millis
+     */
+    private final static long VALID_MILLIS_TIME = 10 * 1000;
 
     @Resource
     private Producer captchaProducer;
@@ -44,7 +52,12 @@ public class KaptchaController {
             return "empty captcha";
         }
         String savedCaptcha = (String) req.getSession().getAttribute(HOME_CAPTCHA_SESSION_KEY);
+        Date sessionDate = (Date) req.getSession().getAttribute(HOME_CAPTCHA_SESSION_DATE);
         if (captcha.equalsIgnoreCase(savedCaptcha)) {
+            if (sessionDate == null
+                    || System.currentTimeMillis() - sessionDate.getTime() > VALID_MILLIS_TIME) {
+                return "expired";
+            }
             return "valid!";
         }
         return "invalid";

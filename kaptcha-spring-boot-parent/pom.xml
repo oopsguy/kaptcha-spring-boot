@@ -5,7 +5,7 @@
     <parent>
         <artifactId>kaptcha-spring-boot</artifactId>
         <groupId>com.oopsguy.kaptcha</groupId>
-        <version>1.0.0-beta</version>
+        <version>1.0.0-beta-2</version>
         <relativePath>../</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -17,7 +17,7 @@
 
     <modules>
         <module>../kaptcha</module>
-        <module>../kapcha-spring-boot-autoconfigure</module>
+        <module>../kaptcha-spring-boot-autoconfigure</module>
         <module>../kaptcha-spring-boot-starter</module>
         <module>../kaptcha-spring-boot-starter-example</module>
     </modules>

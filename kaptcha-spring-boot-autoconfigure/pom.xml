@@ -5,12 +5,12 @@
     <parent>
         <groupId>com.oopsguy.kaptcha</groupId>
         <artifactId>kaptcha-spring-boot-parent</artifactId>
-        <version>1.0.0-beta</version>
+        <version>1.0.0-beta-2</version>
         <relativePath>../kaptcha-spring-boot-parent</relativePath>
     </parent>
     <packaging>jar</packaging>
-    <artifactId>kapcha-spring-boot-autoconfigure</artifactId>
-    <name>kapcha-spring-boot-autoconfigure</name>
+    <artifactId>kaptcha-spring-boot-autoconfigure</artifactId>
+    <name>kaptcha-spring-boot-autoconfigure</name>
     <url>https://github.com/12software/kaptcha-spring-boot</url>
     <description>Kaptcha Spring Boot AutoConfigurer</description>
 
@@ -18,6 +18,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure-processor</artifactId>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -30,12 +35,12 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
     </dependencies>
 
