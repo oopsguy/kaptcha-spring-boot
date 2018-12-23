@@ -1,3 +1,19 @@
+/**
+ *    Copyright 2015-2018 the original author or authors.
+ *
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
+ */
+
 package com.google.code.kaptcha.util;
 
 import java.awt.*;
@@ -8,7 +24,7 @@ import java.lang.reflect.Field;
  * This class provides helper methods in parsing configuration values.
  */
 public class ConfigHelper {
-    /** */
+
     public Color getColor(String paramName, String paramValue,
                           Color defaultColor) {
         Color color;
@@ -22,7 +38,6 @@ public class ConfigHelper {
         return color;
     }
 
-    /** */
     public Color createColorFromCommaSeparatedValues(String paramName,
                                                      String paramValue) {
         Color color;
@@ -50,7 +65,6 @@ public class ConfigHelper {
         return color;
     }
 
-    /** */
     public Color createColorFromFieldValue(String paramName, String paramValue) {
         Color color;
         try {
@@ -66,7 +80,6 @@ public class ConfigHelper {
         return color;
     }
 
-    /** */
     public Object getClassInstance(String paramName, String paramValue,
                                    Object defaultInstance, Config config) {
         Object instance;
@@ -89,7 +102,6 @@ public class ConfigHelper {
         return instance;
     }
 
-    /** */
     public Font[] getFonts(String paramName, String paramValue, int fontSize,
                            Font[] defaultFonts) {
         Font[] fonts;
@@ -105,7 +117,6 @@ public class ConfigHelper {
         return fonts;
     }
 
-    /** */
     public int getPositiveInt(String paramName, String paramValue,
                               int defaultInt) {
         int intValue;
@@ -125,7 +136,6 @@ public class ConfigHelper {
         return intValue;
     }
 
-    /** */
     public char[] getChars(String paramName, String paramValue,
                            char[] defaultChars) {
         char[] chars;
@@ -137,7 +147,6 @@ public class ConfigHelper {
         return chars;
     }
 
-    /** */
     public boolean getBoolean(String paramName, String paramValue,
                               boolean defaultValue) {
         boolean booleanValue;
@@ -153,7 +162,6 @@ public class ConfigHelper {
         return booleanValue;
     }
 
-    /** */
     private void setConfigurable(Object object, Config config) {
         if (object instanceof Configurable) {
             ((Configurable) object).setConfig(config);

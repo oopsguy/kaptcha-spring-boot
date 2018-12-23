@@ -1,3 +1,19 @@
+/**
+ * Copyright 2015-2018 the original author or authors.
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.google.code.kaptcha.util;
 
 import com.google.code.kaptcha.*;
@@ -18,40 +34,34 @@ import java.util.Properties;
  * specifies default values when no value is specified.
  */
 public class Config {
-    /** */
+
     private Properties properties;
 
-    /** */
     private ConfigHelper helper;
 
-    /** */
     public Config(Properties properties) {
         this.properties = properties;
         this.helper = new ConfigHelper();
     }
 
-    /** */
     public boolean isBorderDrawn() {
         String paramName = Constants.KAPTCHA_BORDER;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getBoolean(paramName, paramValue, true);
     }
 
-    /** */
     public Color getBorderColor() {
         String paramName = Constants.KAPTCHA_BORDER_COLOR;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getColor(paramName, paramValue, Color.BLACK);
     }
 
-    /** */
     public int getBorderThickness() {
         String paramName = Constants.KAPTCHA_BORDER_THICKNESS;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getPositiveInt(paramName, paramValue, 1);
     }
 
-    /** */
     public Producer getProducerImpl() {
         String paramName = Constants.KAPTCHA_PRODUCER_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -59,7 +69,6 @@ public class Config {
         return producer;
     }
 
-    /** */
     public TextProducer getTextProducerImpl() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -68,21 +77,18 @@ public class Config {
         return textProducer;
     }
 
-    /** */
     public char[] getTextProducerCharString() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_CHAR_STRING;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getChars(paramName, paramValue, "abcde2345678gfynmnpwx".toCharArray());
     }
 
-    /** */
     public int getTextProducerCharLength() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_CHAR_LENGTH;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getPositiveInt(paramName, paramValue, 5);
     }
 
-    /** */
     public Font[] getTextProducerFonts(int fontSize) {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_FONT_NAMES;
         String paramValue = this.properties.getProperty(paramName);
@@ -91,28 +97,24 @@ public class Config {
         });
     }
 
-    /** */
     public int getTextProducerFontSize() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_FONT_SIZE;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getPositiveInt(paramName, paramValue, 40);
     }
 
-    /** */
     public Color getTextProducerFontColor() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_FONT_COLOR;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getColor(paramName, paramValue, Color.BLACK);
     }
 
-    /** */
     public int getTextProducerCharSpace() {
         String paramName = Constants.KAPTCHA_TEXTPRODUCER_CHAR_SPACE;
         String paramValue = properties.getProperty(paramName);
         return this.helper.getPositiveInt(paramName, paramValue, 2);
     }
 
-    /** */
     public NoiseProducer getNoiseImpl() {
         String paramName = Constants.KAPTCHA_NOISE_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -121,14 +123,12 @@ public class Config {
         return noiseProducer;
     }
 
-    /** */
     public Color getNoiseColor() {
         String paramName = Constants.KAPTCHA_NOISE_COLOR;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getColor(paramName, paramValue, Color.BLACK);
     }
 
-    /** */
     public GimpyEngine getObscurificatorImpl() {
         String paramName = Constants.KAPTCHA_OBSCURIFICATOR_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -136,7 +136,6 @@ public class Config {
         return gimpyEngine;
     }
 
-    /** */
     public WordRenderer getWordRendererImpl() {
         String paramName = Constants.KAPTCHA_WORDRENDERER_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -145,7 +144,6 @@ public class Config {
         return wordRenderer;
     }
 
-    /** */
     public BackgroundProducer getBackgroundImpl() {
         String paramName = Constants.KAPTCHA_BACKGROUND_IMPL;
         String paramValue = this.properties.getProperty(paramName);
@@ -154,28 +152,24 @@ public class Config {
         return backgroundProducer;
     }
 
-    /** */
     public Color getBackgroundColorFrom() {
         String paramName = Constants.KAPTCHA_BACKGROUND_CLR_FROM;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getColor(paramName, paramValue, Color.LIGHT_GRAY);
     }
 
-    /** */
     public Color getBackgroundColorTo() {
         String paramName = Constants.KAPTCHA_BACKGROUND_CLR_TO;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getColor(paramName, paramValue, Color.WHITE);
     }
 
-    /** */
     public int getWidth() {
         String paramName = Constants.KAPTCHA_IMAGE_WIDTH;
         String paramValue = this.properties.getProperty(paramName);
         return this.helper.getPositiveInt(paramName, paramValue, 200);
     }
 
-    /** */
     public int getHeight() {
         String paramName = Constants.KAPTCHA_IMAGE_HEIGHT;
         String paramValue = this.properties.getProperty(paramName);
@@ -185,6 +179,8 @@ public class Config {
     /**
      * Allows one to override the key name which is stored in the users
      * HttpSession. Defaults to Constants.KAPTCHA_SESSION_KEY.
+     *
+     * @return session key
      */
     public String getSessionKey() {
         return this.properties.getProperty(Constants.KAPTCHA_SESSION_CONFIG_KEY, Constants.KAPTCHA_SESSION_KEY);
@@ -193,12 +189,13 @@ public class Config {
     /**
      * Allows one to override the date name which is stored in the
      * users HttpSession. Defaults to Constants.KAPTCHA_SESSION_KEY.
+     *
+     * @return session date
      */
     public String getSessionDate() {
         return this.properties.getProperty(Constants.KAPTCHA_SESSION_CONFIG_DATE, Constants.KAPTCHA_SESSION_DATE);
     }
 
-    /** */
     public Properties getProperties() {
         return this.properties;
     }
