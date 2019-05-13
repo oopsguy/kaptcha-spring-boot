@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
     <artifactId>kaptcha-spring-boot-autoconfigure</artifactId>
     <name>kaptcha-spring-boot-autoconfigure</name>
-    <url>https://github.com/12software/kaptcha-spring-boot</url>
+    <url>https://github.com/oospguy/kaptcha-spring-boot</url>
     <description>Kaptcha Spring Boot AutoConfigurer</description>
 
     <dependencies>

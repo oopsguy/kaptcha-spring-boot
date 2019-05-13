@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
     <artifactId>kaptcha-spring-boot-parent</artifactId>
     <name>kaptcha-spring-boot-parent</name>
-    <url>https://github.com/12software/kaptcha-spring-boot</url>
+    <url>https://github.com/oospguy/kaptcha-spring-boot</url>
     <description>Kaptcha Spring Boot Starter Parent</description>
 
     <modules>
@@ -41,7 +41,7 @@
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
-            <!--For java 9 or up-->
+            <!-- For JDK 9+ -->
             <dependency>
                 <groupId>javax.annotation</groupId>
                 <artifactId>javax.annotation-api</artifactId>

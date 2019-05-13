@@ -15,7 +15,7 @@
     <version>1.0.0-beta-2</version>
 
     <name>kaptcha-spring-boot</name>
-    <url>https://github.com/12software/kaptcha-spring-boot</url>
+    <url>https://github.com/oospguy/kaptcha-spring-boot</url>
     <description>Kaptcha Spring Boot Starter</description>
 
     <modules>
@@ -23,6 +23,7 @@
     </modules>
 
     <properties>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -39,14 +40,14 @@
             <name>oopsguy</name>
             <email>oopsguy@foxmail.com</email>
             <url>https://github.com/oopsguy</url>
-            <organization>12software</organization>
-            <organizationUrl>https://github.com/12software</organizationUrl>
+            <organization>oospguy</organization>
+            <organizationUrl>https://github.com/oospguy</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/12software/kaptcha-spring-boot.git</connection>
-        <developerConnection>scm:git:https://github.com/12software/kaptcha-spring-boot.git</developerConnection>
-        <url>https://github.com/12software/kaptcha-spring-boot</url>
+        <connection>scm:git:https://github.com/oospguy/kaptcha-spring-boot.git</connection>
+        <developerConnection>scm:git:https://github.com/oospguy/kaptcha-spring-boot.git</developerConnection>
+        <url>https://github.com/oospguy/kaptcha-spring-boot</url>
     </scm>
 
     <build>
